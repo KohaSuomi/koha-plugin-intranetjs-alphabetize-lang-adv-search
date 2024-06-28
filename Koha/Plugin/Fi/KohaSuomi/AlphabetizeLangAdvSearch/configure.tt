@@ -19,7 +19,7 @@
 
         <p>
 
-        <label for="config_param_a">Käytettävän raportin ID: </label>
+        <label for="config_param_a">Priorisoi saame (smn, sme, sms, 1 = priorisoi, 0 = älä priorisoi):</label>
         <input type="text" name="config_param_a" value="[% config_param_a %]" />
 
         <p>
