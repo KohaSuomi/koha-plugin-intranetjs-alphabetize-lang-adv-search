@@ -22,7 +22,7 @@ our $metadata = {
     minimum_version => '23.11',
     maximum_version => '',
     version         => $VERSION,
-    description     => "Aakkostaa ja priorisoi kielivalikot tarkassa haussa. Konfiguroitavissa.",
+    description     => "Aakkostaa ja priorisoi kielivalikot tarkassa haussa. Konfiguroitavissa. (Paikalliskannat, Täti)",
 };
 
 ## This is the minimum code required for a plugin's 'new' method
