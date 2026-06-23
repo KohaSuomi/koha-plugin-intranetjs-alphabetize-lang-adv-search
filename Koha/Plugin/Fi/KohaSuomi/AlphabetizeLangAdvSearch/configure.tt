@@ -1,18 +1,13 @@
-[% TRY %]
-    [% PROCESS "$PLUGIN_DIR/i18n/${LANG}.inc" %]
-[% CATCH %]
-    [% PROCESS "$PLUGIN_DIR/i18n/default.inc" %]
-[% END %]
 [% USE KohaDates %]
 [% INCLUDE 'doc-head-open.inc' %]
- <title>[% T.configure_1 %]</title>
+ <title>IntranetUserJS: Alphabetize/prioritize advanced search languages Configuration</title>
 [% INCLUDE 'doc-head-close.inc' %]
 </head>
 <body>
 [% INCLUDE 'header.inc' %]
 [% INCLUDE 'cat-search.inc' %]
 
-<div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">[% T.configure_2 %]</a> &rsaquo; <a href="/cgi-bin/koha/plugins/plugins-home.pl">[% T.configure_3 %]</a>[% T.configure_4 %]</div>
+<div id="breadcrumbs"><a href="/cgi-bin/koha/mainpage.pl">Home</a> &rsaquo; <a href="/cgi-bin/koha/plugins/plugins-home.pl">Plugins</a> &rsaquo; IntranetUserJS: Alphabetize/prioritize advanced search languages &rsaquo; Configuration</div>
 
 <div id="doc3">
 
@@ -24,24 +19,24 @@
 
         <p>
 
-        <label for="config_param_a">[% T.configure_5 %]</label>
+        <label for="config_param_a">Priorisoi saame (smn, sme, sms, 1 = priorisoi, 0 = älä priorisoi):</label>
         <input type="text" name="config_param_a" value="[% config_param_a %]" />
 
         <p>
 
         <input type="hidden" name="save" value="1" />
 
-        <input type="submit" value="[% T.configure_6 %]" />
+        <input type="submit" value="Save configuration" />
     </form>
 
     <hr/>
 
     <p>
-        <h5>[% T.configure_7 %]</h5>
+        <h5>Upgrade status</h5>
         [% IF last_upgraded %]
             Plugin was last upgraded on this system on [% last_upgraded | $KohaDates with_hours => 1 %]
         [% ELSE %]
-            [% T.configure_8 %]
+            Plugin has never been upgraded.
         [% END %]
     </p>
 
