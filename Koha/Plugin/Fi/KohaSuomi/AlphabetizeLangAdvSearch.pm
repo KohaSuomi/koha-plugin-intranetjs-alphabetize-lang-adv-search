@@ -25,6 +25,25 @@ our $metadata = {
     description     => "Aakkostaa ja priorisoi kielivalikot tarkassa haussa. Konfiguroitavissa. (Paikalliskannat, Täti)",
 };
 
+sub get_localized_metadata {
+    my ($self) = @_;
+    my $lang = C4::Languages::getlanguage() || 'en';
+    my ($name, $description);
+
+    if ($lang eq 'sv-SE') {
+        $name = "IntranetUserJS: Bokstavsordna/prioritera språk i avancerad sökning";
+        $description = "Bokstavsordna och prioritera språk i avancerad sökning. Konfigurerbart. (Lokala databaser, Täti)";
+    
+    } elsif ($lang eq 'fi-FI' ) {
+        $name = "IntranetUserJS: Aakkostaa/priorisoi kielivalikot tarkassa haussa";
+        $description = "Aakkostaa ja priorisoi kielivalikot tarkassa haussa. Konfiguroitavissa. (Paikalliskannat, Täti)";
+    } else {
+        $name = "IntranetUserJS: Alphabetize/prioritize advanced search languages";
+        $description = "Alphabetizes and prioritizes language options in advanced search. Configurable. (Local Databases, Täti)";
+    }
+    return ($name, $description);
+}
+
 ## This is the minimum code required for a plugin's 'new' method
 ## More can be added, but none should be removed
 sub new {
@@ -38,7 +57,11 @@ sub new {
     ## This runs some additional magic and checking
     ## and returns our actual
     my $self = $class->SUPER::new($args);
-
+    
+    my ($name, $description) = $self->get_localized_metadata();
+    $self->{'metadata'}->{'name'} = $name;
+    $self->{'metadata'}->{'description'} = $description;
+    
     return $self;
 }
 
