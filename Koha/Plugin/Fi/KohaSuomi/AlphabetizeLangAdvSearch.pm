@@ -45,6 +45,25 @@ sub get_localized_metadata {
 }
 
 
+sub get_localized_metadata {
+    my ($self) = @_;
+    my $lang = C4::Languages::getlanguage() || 'en';
+    my ($name, $description);
+
+    if ($lang eq 'sv-SE') {
+        $name = "IntranetUserJS: Bokstavsordna/prioritera språk i avancerad sökning";
+        $description = "Bokstavsordna och prioritera språk i avancerad sökning. Konfigurerbart. (Lokala databaser, Täti)";
+    
+    } elsif ($lang eq 'fi-FI' ) {
+        $name = "IntranetUserJS: Aakkostaa/priorisoi kielivalikot tarkassa haussa";
+        $description = "Aakkostaa ja priorisoi kielivalikot tarkassa haussa. Konfiguroitavissa. (Paikalliskannat, Täti)";
+    } else {
+        $name = "IntranetUserJS: Alphabetize/prioritize advanced search languages";
+        $description = "Alphabetizes and prioritizes language options in advanced search. Configurable. (Local Databases, Täti)";
+    }
+    return ($name, $description);
+}
+
 ## This is the minimum code required for a plugin's 'new' method
 ## More can be added, but none should be removed
 sub new {
@@ -63,6 +82,11 @@ sub new {
     $self->{'metadata'}->{'name'} = $name;
     $self->{'metadata'}->{'description'} = $description;
 
+    
+    my ($name, $description) = $self->get_localized_metadata();
+    $self->{'metadata'}->{'name'} = $name;
+    $self->{'metadata'}->{'description'} = $description;
+    
     return $self;
 }
 
@@ -123,7 +147,7 @@ sub configure {
 
         ## Grab the values we already have for our settings, if any exist
         $template->param(
-            config_param_a => scalar $self->retrieve_data('config_param_a') || 0,
+            config_param_a => $self->retrieve_data('config_param_a') || 0,
             last_upgraded   => $self->retrieve_data('last_upgraded'),
         );
 
