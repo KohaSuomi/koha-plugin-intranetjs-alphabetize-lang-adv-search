@@ -45,6 +45,7 @@ sub get_localized_metadata {
 }
 
 
+
 ## This is the minimum code required for a plugin's 'new' method
 ## More can be added, but none should be removed
 sub new {
